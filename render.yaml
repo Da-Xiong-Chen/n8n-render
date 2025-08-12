@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: n8n-render
+    env: docker
+    plan: free
+    region: singapore
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "true"
+      - key: N8N_BASIC_AUTH_USER
+        value: "admin"
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: "12345678"
+      - key: WEBHOOK_URL
+        value: "https://n8n-render-g004.onrender.com/"
+      - key: GENERIC_TIMEZONE
+        value: "Asia/Taipei"
+      - key: TZ
+        value: "Asia/Taipei"
+      - key: PORT
+        value: "5678"
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 1
